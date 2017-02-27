@@ -1,10 +1,12 @@
 #include "Carta.h"
+#include "Jugador.h"
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
 
 using namespace std;
 
+bool alguienGano();
 int main(int argc, char const *argv[])
 {
 
@@ -67,11 +69,13 @@ int main(int argc, char const *argv[])
 	deck[50] = new Carta(10 , '&' , 'K');
 	deck[51] = new Carta(10 , '&' , 'Q');
 
-	for (int i = 0; i < deck.size(); ++i)
-		{
-			cout<<deck[i]->getSimbolo()<<endl;
-		}	
+	//Jugadores
+	Jugador* humano = new Jugador(deck);
+	//Partida 
 
+	do{
+
+	}while();
 
 
 
