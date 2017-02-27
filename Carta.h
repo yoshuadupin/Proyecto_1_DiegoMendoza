@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 #include <iostream>
 
 using std::cout;
@@ -11,7 +11,7 @@ private:
 
 public:
 	Carta();
-	Carta(int , char);
+	Carta(int , char, char);
 	~Carta();
 	
 	//Setters

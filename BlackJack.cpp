@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	deck[6] = new Carta(7 , '*' , '7');
 	deck[7] = new Carta(8 , '*' , '8');
 	deck[8] = new Carta(9 , '*' , '9');
-	deck[9] = new Carta(9 , '*' , '10');
+	deck[9] = new Carta(10 , '*' , 'D');
 	deck[10] = new Carta(10 , '*' , 'J');
 	deck[11] = new Carta(10 , '*' , 'K');
 	deck[12] = new Carta(10 , '*' , 'Q');
@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
 	deck[19] = new Carta(7 , '^' , '7');
 	deck[20] = new Carta(8 , '^' , '8');
 	deck[21] = new Carta(9 , '^' , '9');
-	deck[22] = new Carta(9 , '^' , '10');
+	deck[22] = new Carta(10 , '^' , 'D');
 	deck[23] = new Carta(10 , '^' , 'J');
 	deck[24] = new Carta(10 , '^' , 'K');
 	deck[25] = new Carta(10 , '^' , 'Q');
@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
 	deck[32] = new Carta(7 , '#' , '7');
 	deck[33] = new Carta(8 , '#' , '8');
 	deck[34] = new Carta(9 , '#' , '9');
-	deck[35] = new Carta(9 , '#' , '10');
+	deck[35] = new Carta(10 , '#' , 'D');
 	deck[36] = new Carta(10 , '#' , 'J');
 	deck[37] = new Carta(10 , '#' , 'K');
 	deck[38] = new Carta(10 , '#' , 'Q');
@@ -62,10 +62,15 @@ int main(int argc, char const *argv[])
 	deck[45] = new Carta(7 , '&' , '7');
 	deck[46] = new Carta(8 , '&' , '8');
 	deck[47] = new Carta(9 , '&' , '9');
-	deck[48] = new Carta(9 , '&' , '10');
+	deck[48] = new Carta(10 , '&' , 'D');
 	deck[49] = new Carta(10 , '&' , 'J');
 	deck[50] = new Carta(10 , '&' , 'K');
 	deck[51] = new Carta(10 , '&' , 'Q');
+
+	for (int i = 0; i < deck.size(); ++i)
+		{
+			cout<<deck[i]->getSimbolo()<<endl;
+		}	
 
 
 
@@ -75,7 +80,7 @@ int main(int argc, char const *argv[])
 
 	//Iniciar numeros aleatorios
 
-	srand(time(null));
+	srand(time(NULL));
 
 	return 0;
 }
