@@ -6,7 +6,9 @@
 
 using namespace std;
 
-bool alguienGano();
+bool alguienGano(int , int);
+bool pedirCarta();
+int cartaAleatoria(vector<int>);
 int main(int argc, char const *argv[])
 {
 
@@ -69,22 +71,98 @@ int main(int argc, char const *argv[])
 	deck[50] = new Carta(10 , '&' , 'K');
 	deck[51] = new Carta(10 , '&' , 'Q');
 
+	//Vector cartas;
+	vector<int> cartasJugadas;
 	//Jugadores
 	Jugador* humano = new Jugador(deck);
-	//Partida 
-
+	Jugador* IA  = new Jugador(deck);
+	
+	//LLevar el turno
+	int turno = 0 ;
+	bool iniciaJuego = true;
+	
+	srand(time(NULL)); 
+	
+	
 	do{
+		if(turno == 0 ){
 
-	}while();
+			cout<<"Turno del Jugador"<<endl;
+			
+			if(iniciaJuego){
+				cartasJugadas.push_back(rand()%52);
+				humano->setCarta(cartasJugadas[0]);
+				humano->setCarta(cartaAleatoria(cartasJugadas));
+				for (int i = 0; i < cartasJugadas.size(); ++i)
+				{
+					cout<<cartasJugadas[i]<<endl;
+				}
+				iniciaJuego = false;
+			}else{
+				do{
+
+				}while(pedirCarta());
+			}
 
 
+		}else{
+			cout<<"Turno de la IA"<<endl;
+		}
+
+	}while(alguienGano(humano->sumaCartas() , IA->sumaCartas()));		
 
 
 
 
 	//Iniciar numeros aleatorios
-
-	srand(time(NULL));
+	for (int i = 0; i < deck.size(); ++i)
+	{
+		delete deck[i];
+		/* code */
+	}
+	delete humano;
+	delete IA;
+	deck.clear();
+	
 
 	return 0;
 }
+//TODO
+bool alguienGano(int humano, int IA){
+	if(humano == 21){
+		cout<<"Gana humano"<<endl;
+		return true;
+	}else if(IA==21){
+		cout<<"Gana la IA"<<endl;
+		return true;
+	}
+	return false;
+
+}
+
+bool pedirCarta(){
+	char opcion;
+	do{
+		cout<<"Desea otra carta..."<<endl;
+		cin>>opcion;
+	}while(opcion != 's' && opcion != 'n');
+	if(opcion == 's'){
+		return true;	
+	}
+	return false;
+}
+
+int cartaAleatoria(vector<int> cartasJugadas){
+	int random =rand()%52;
+	//Repite el ciclo hasta que el numero que saque no este repitido 
+	for (int i = 0; i < cartasJugadas.size(); ++i)
+	{
+		if(random == cartasJugadas[i]){
+			random = rand()%52;
+			i = 0;
+		}
+	}
+	
+	return random;
+}
+

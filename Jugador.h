@@ -1,6 +1,6 @@
-#pragma once
-#include <vector>
 #include "Carta.h"
+#include <vector>
+#pragma once
 
 using namespace std;
 class Jugador
@@ -15,6 +15,8 @@ public:
 	~Jugador();
 
 	void setCarta(int);
-	void setDeck(vector<Carta>);
+	void setDeck(vector<Carta*>);
 	int sumaCartas();
+
+
 };
