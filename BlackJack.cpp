@@ -73,48 +73,54 @@ int main(int argc, char const *argv[])
 
 	//Vector cartas;
 	vector<int> cartasJugadas;
+	srand(time(NULL));
+	cartasJugadas.push_back(rand()%52);
+	cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
+	cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
+	cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
+	
+	
 	//Jugadores
 	Jugador* humano = new Jugador(deck);
 	Jugador* IA  = new Jugador(deck);
 	
+	//Variables de control
+	int turno = 0;
+
+	humano->setCarta(cartasJugadas[0]);
+	humano->setCarta(cartasJugadas[1]);
+	IA->setCarta(cartasJugadas[2]);
+	IA->setCarta(cartasJugadas[3]);
 	//LLevar el turno
-	int turno = 0 ;
-	bool iniciaJuego = true;
-	
-	srand(time(NULL)); 
-	
-	
-	do{
-		if(turno == 0 ){
 
-			cout<<"Turno del Jugador"<<endl;
-			
-			if(iniciaJuego){
-				cartasJugadas.push_back(rand()%52);
-				humano->setCarta(cartasJugadas[0]);
-				humano->setCarta(cartaAleatoria(cartasJugadas));
-				for (int i = 0; i < cartasJugadas.size(); ++i)
-				{
-					cout<<cartasJugadas[i]<<endl;
-				}
-				iniciaJuego = false;
+	//Inicar partida
+	while(humano->sumaCartas() != 21 && IA->sumaCartas() != 21){
+		//Turno para el jugador
+		if(turno == 0){
+			humano->imprimirCartas();
+
+			if(pedirCarta()){
+				//Agrega un numero aleatorio al arreglo de cartas jugadas
+				cartasJugadas.push_back(cartasAleatorias(cartasJugadas));
+				humano->setCarta(cartasJugadas[cartasJugadas.size()-1]);			
 			}else{
-				do{
-
-				}while(pedirCarta());
-			}
-
-
+				turno = 1;
+			}			
+		//Turno para la IA	
 		}else{
-			cout<<"Turno de la IA"<<endl;
+			break;
 		}
+	}
 
-	}while(alguienGano(humano->sumaCartas() , IA->sumaCartas()));		
+	for (int i = 0; i < cartasJugadas.size(); ++i)
+	{
+		cout<<cartasJugadas[i]<<endl;
+	}
+	
 
 
 
-
-	//Iniciar numeros aleatorios
+	
 	for (int i = 0; i < deck.size(); ++i)
 	{
 		delete deck[i];
@@ -127,18 +133,7 @@ int main(int argc, char const *argv[])
 
 	return 0;
 }
-//TODO
-bool alguienGano(int humano, int IA){
-	if(humano == 21){
-		cout<<"Gana humano"<<endl;
-		return true;
-	}else if(IA==21){
-		cout<<"Gana la IA"<<endl;
-		return true;
-	}
-	return false;
 
-}
 
 bool pedirCarta(){
 	char opcion;
@@ -152,6 +147,8 @@ bool pedirCarta(){
 	return false;
 }
 
+//Metodo que recibe una copia del arreglo de cartas y verifica que una carta no
+// este repetida para introducirla 
 int cartaAleatoria(vector<int> cartasJugadas){
 	int random =rand()%52;
 	//Repite el ciclo hasta que el numero que saque no este repitido 
@@ -165,4 +162,5 @@ int cartaAleatoria(vector<int> cartasJugadas){
 	
 	return random;
 }
+
 

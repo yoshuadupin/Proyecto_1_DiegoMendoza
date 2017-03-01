@@ -44,4 +44,13 @@ int Jugador::sumaCartas(){
 	return	suma;
 }
 
+void Jugador::imprimirCartas(){
+	cout<<"Tus cartas en mano:"<<endl;
+	for (int i = 0; i < mano.size(); ++i){
+		cout<<copiaDeck[mano[i]]->getSimbolo()<<" de "<<copiaDeck[mano[i]]->getPalo()<<endl;
+	}a
+
+}
+
+
 

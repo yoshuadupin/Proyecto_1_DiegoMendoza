@@ -17,6 +17,5 @@ public:
 	void setCarta(int);
 	void setDeck(vector<Carta*>);
 	int sumaCartas();
-
-
+	void imprimirCartas();
 };
