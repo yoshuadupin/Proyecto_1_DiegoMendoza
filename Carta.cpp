@@ -13,7 +13,7 @@ Carta::Carta(int valor  , char palo , char simbolo){
 }
 
 Carta::~Carta(){
-	cout<<"Liberando memoria";
+	//cout<<"Liberando memoria";
 }
 void Carta::setValor(int valor){
 	this->valor = valor;

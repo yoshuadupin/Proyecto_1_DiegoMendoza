@@ -107,7 +107,7 @@ int main(int argc, char const *argv[])
 
 				cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
 				humano->setCarta(cartasJugadas[cartasJugadas.size()-1]);
-							
+				
 			}else{
 				turno = 1;
 			}			
@@ -121,23 +121,25 @@ int main(int argc, char const *argv[])
 
 				cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
 				IA->setCarta(cartasJugadas[cartasJugadas.size()-1]);
-							
+				
 			}else{
 				break;
 			}
 		}
 	}
 	//Decidir quien gana:
-	if(humano->sumaCartas() > IA->sumaCartas() || humano->sumaCartas() <= 21){
+	if(humano->sumaCartas() > IA->sumaCartas() && humano->sumaCartas() <= 21){
 		cout<<"Gana el jugador"<<endl;
-	}else if(IA->sumaCartas()>IA->sumaCartas() || IA->sumaCartas() <= 21){
+	}else if(IA->sumaCartas()>IA->sumaCartas() && IA->sumaCartas() <= 21){
+		cout<<"Gana la IA"<<endl;
+	}else{
 		cout<<"Gana la IA"<<endl;
 	}
 
-	for (int i = 0; i < cartasJugadas.size(); ++i)
-	{
-		cout<<cartasJugadas[i]<<endl;
-	}
+	// for (int i = 0; i < cartasJugadas.size(); ++i)
+	// {
+	// 	cout<<cartasJugadas[i]<<endl;
+	// }
 	
 
 
