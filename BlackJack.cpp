@@ -8,6 +8,7 @@ using namespace std;
 
 bool alguienGano(int , int);
 bool pedirCarta();
+bool pedirCarta(Jugador*);
 int cartaAleatoria(vector<int>);
 int main(int argc, char const *argv[])
 {
@@ -97,19 +98,40 @@ int main(int argc, char const *argv[])
 	while(humano->sumaCartas() != 21 && IA->sumaCartas() != 21){
 		//Turno para el jugador
 		if(turno == 0){
+			//TODO:Cambiar por el nombre que el elija
+			cout<<"Turno del Jugador"<<endl;
 			humano->imprimirCartas();
-
-			if(pedirCarta()){
+			cout<<"Tiene en mano:"<<humano->sumaCartas()<<endl;
+			if(pedirCarta() && humano->sumaCartas()<21){
 				//Agrega un numero aleatorio al arreglo de cartas jugadas
-				cartasJugadas.push_back(cartasAleatorias(cartasJugadas));
-				humano->setCarta(cartasJugadas[cartasJugadas.size()-1]);			
+
+				cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
+				humano->setCarta(cartasJugadas[cartasJugadas.size()-1]);
+							
 			}else{
 				turno = 1;
 			}			
 		//Turno para la IA	
 		}else{
-			break;
+			cout<<"Turno de la IA"<<endl;
+			IA->imprimirCartas();
+			cout<<"Tiene en mano:"<<IA->sumaCartas()<<endl;
+			if(pedirCarta(IA)){
+				//Agrega un numero aleatorio al arreglo de cartas jugadas
+
+				cartasJugadas.push_back(cartaAleatoria(cartasJugadas));
+				IA->setCarta(cartasJugadas[cartasJugadas.size()-1]);
+							
+			}else{
+				break;
+			}
 		}
+	}
+	//Decidir quien gana:
+	if(humano->sumaCartas() > IA->sumaCartas() || humano->sumaCartas() <= 21){
+		cout<<"Gana el jugador"<<endl;
+	}else if(IA->sumaCartas()>IA->sumaCartas() || IA->sumaCartas() <= 21){
+		cout<<"Gana la IA"<<endl;
 	}
 
 	for (int i = 0; i < cartasJugadas.size(); ++i)
@@ -143,6 +165,14 @@ bool pedirCarta(){
 	}while(opcion != 's' && opcion != 'n');
 	if(opcion == 's'){
 		return true;	
+	}
+	return false;
+}
+
+bool pedirCarta(Jugador* ia){
+	if(ia->sumaCartas()<21){
+		cout<<"Entro a la validacion"<<endl;
+		return true;
 	}
 	return false;
 }
